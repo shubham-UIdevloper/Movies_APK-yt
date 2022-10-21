@@ -1,17 +1,21 @@
-const boxesContainer = document.getElementById('boxes')
-const btn = document.getElementById('btn')
+const contents = document.querySelectorAll('.content')
+const listItems = document.querySelectorAll('nav ul li')
 
-btn.addEventListener('click', () => boxesContainer.classList.toggle('big'))
+listItems.forEach((item, idx) => {
+    item.addEventListener('click', () => {
+        hideAllContents()
+        hideAllItems()
 
-function createBoxes() {
-  for (let i = 0; i < 4; i++) {
-    for (let j = 0; j < 4; j++) {
-      const box = document.createElement('div')
-      box.classList.add('box')
-      box.style.backgroundPosition = `${-j * 125}px ${-i * 125}px`
-      boxesContainer.appendChild(box)
-    }
-  }
+        item.classList.add('active')
+        contents[idx].classList.add('show')
+    })
+})
+
+function hideAllContents() {
+    contents.forEach(content => content.classList.remove('show'))
 }
 
-createBoxes()
+
+function hideAllItems() {
+    listItems.forEach(item => item.classList.remove('active'))
+}
